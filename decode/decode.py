@@ -37,7 +37,7 @@ def decode(s):
         else: 
             result = result + s[i]
 
-    print result
+    return result
 
 decode("0h")
 
