@@ -31,28 +31,16 @@ def dec2bin(num):
 
     binary_str = ""
     base = 2
-    r = num
 
     for i in range(7, -1, -1):
         x = base ** (i)
-        if r == x:
+        if num >= x:
             binary_str = binary_str +'1'
-            print "r == x: " + binary_str + "r " + str(r)  + " x: " + str(x)
-        elif (r == num) and (x > num):
-            print "r == num: " + binary_str  + "r " + str(r)  + " x: " + str(x)
-            pass
-
-        elif r < x:
+            num -= x
+        elif num < x:
             binary_str = binary_str +'0'
-            print "r < x " + binary_str  + "r " + str(r)  + " x: " + str(x)
-        elif r > 0:
-            binary_str = binary_str +'1'
-            print "r > 0 " + binary_str  + "r " + str(r)  + " x: " + str(x)
 
-        r = num % x
-
-
-    return binary_str
+    return binary_str.lstrip('0')
 
 
 
