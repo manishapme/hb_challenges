@@ -17,6 +17,9 @@ For example::
     >>> dec2bin(15)
     '1111'
 
+    >>> dec2bin(1000000)
+    '11110100001001000000'
+
 """
 
 
@@ -26,21 +29,27 @@ def dec2bin(num):
     if type(num) != int:
         print 'Function only works with integers'
         return
-    elif num == 0:
-        return str(0)
 
     binary_str = ""
     base = 2
+    #start at one to ensure our loop will run at least once for num ==0
+    num_loops = 1
 
-    for i in range(7, -1, -1):
+    # get length of final binary string. will be minimum of 1 character.
+    while (base ** num_loops) <= num:
+        num_loops +=1
+
+    # getting the range in reverse order allows us to build the string from left to right
+    # stepping backwards in increments of 1 and stopping at 0
+    for i in range(num_loops - 1, -1, -1):
         x = base ** (i)
         if num >= x:
-            binary_str = binary_str +'1'
+            binary_str += '1'
             num -= x
-        elif num < x:
-            binary_str = binary_str +'0'
+        else:
+            binary_str += '0'
 
-    return binary_str.lstrip('0')
+    return binary_str
 
 
 
